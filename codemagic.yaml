@@ -13,10 +13,7 @@ workflows:
 
     scripts:
      
-      # خطوات بعد البناء
-      post-build:
-        - echo "Build finished"
-
+    
     artifacts:
       - build/ios/ipa/*.ipa        # ملفات IPA التي سيتم تنزيلها بعد البناء
 
