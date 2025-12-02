@@ -11,8 +11,30 @@ workflows:
       vars:
         PROJECT_NAME: LMath
 
-   
-     
-    
+    scripts:
+      # تثبيت dependencies
+      - name: Flutter pub get
+        script: |
+          flutter pub get
+
+      # إنشاء ملفات iOS (Podfile + Runner)
+      - name: Prepare iOS
+        script: |
+          flutter build ios --release --no-codesign
+
+      # حل مشاكل CocoaPods
+      - name: Install pods
+        script: |
+          cd ios
+          pod install --repo-update
+
     artifacts:
-      - build/ios/ipa/*.ipa        # ملفات IPA التي سيتم تنزيلها بعد البناء
+      - build/ios/ipa/*.ipa
+
+    triggering:
+      events:
+        - push          # تمكين الـ Build التلقائي
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
