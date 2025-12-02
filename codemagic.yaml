@@ -36,14 +36,16 @@ workflows:
           cd ios
           pod install --repo-update
 
-      # بناء التطبيق
+      # بناء التطبيق مع التوقيع (مطلوب Apple Developer Account)
       - name: Build iOS
         script: |
-          flutter build ios --release --no-codesign
+          flutter build ios --release
 
+    # تحديد ملفات الـ artifacts
     artifacts:
       - build/ios/ipa/*.ipa
 
+    # تمكين الـ Build التلقائي على push للفرع main
     triggering:
       events:
         - push
