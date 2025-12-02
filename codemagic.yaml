@@ -1,9 +1,29 @@
 workflows:
 
-    sample-workflow:
+  lmath-ios-workflow:
+    name: LMath iOS Build
+    max_build_duration: 120
+    instance_type: mac_mini_m2
 
-        name: Codemagic Sample Workflow
+    environment:
+      flutter: stable
+      xcode: latest
+      vars:
+        PROJECT_NAME: LMath
 
-        max_build_duration: 120
+    scripts:
+      # خطوات قبل البناء
+      pre-build:
+        - flutter pub get           # تثبيت حزم Flutter
+        - cd ios && pod install     # تثبيت Pods المطلوبة
 
-        instance_type: mac_mini_m2
+      # خطوات بعد البناء
+      post-build:
+        - echo "Build finished"
+
+    artifacts:
+      - build/ios/ipa/*.ipa        # ملفات IPA التي سيتم تنزيلها بعد البناء
+
+    publishing:
+      # إذا أردت رفع IPA مباشرة إلى TestFlight أو تخزين آخر يمكن إضافته هنا
+      # نتركه فارغ لتجربة تنزيل IPA فقط
