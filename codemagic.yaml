@@ -12,11 +12,7 @@ workflows:
         PROJECT_NAME: LMath
 
     scripts:
-      # خطوات قبل البناء
-      pre-build:
-        - flutter pub get           # تثبيت حزم Flutter
-        - cd ios && pod install     # تثبيت Pods المطلوبة
-
+     
       # خطوات بعد البناء
       post-build:
         - echo "Build finished"
