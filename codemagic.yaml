@@ -11,7 +11,7 @@ workflows:
       vars:
         PROJECT_NAME: LMath
 
-    scripts:
+   
      
     
     artifacts:
