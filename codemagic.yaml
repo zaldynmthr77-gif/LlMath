@@ -17,23 +17,28 @@ workflows:
         script: |
           flutter pub get
 
-      # إنشاء ملفات iOS (Podfile + Runner)
+      # تجهيز ملفات iOS
       - name: Prepare iOS
         script: |
-          flutter build ios --release --no-codesign
+          flutter create .
 
-      # حل مشاكل CocoaPods
+      # تثبيت CocoaPods
       - name: Install pods
         script: |
           cd ios
           pod install --repo-update
+
+      # بناء التطبيق
+      - name: Build iOS
+        script: |
+          flutter build ios --release --no-codesign
 
     artifacts:
       - build/ios/ipa/*.ipa
 
     triggering:
       events:
-        - push          # تمكين الـ Build التلقائي
+        - push
       branch_patterns:
         - pattern: 'main'
           include: true
