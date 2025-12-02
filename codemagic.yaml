@@ -16,7 +16,3 @@ workflows:
     
     artifacts:
       - build/ios/ipa/*.ipa        # ملفات IPA التي سيتم تنزيلها بعد البناء
-
-    publishing:
-      # إذا أردت رفع IPA مباشرة إلى TestFlight أو تخزين آخر يمكن إضافته هنا
-      # نتركه فارغ لتجربة تنزيل IPA فقط
